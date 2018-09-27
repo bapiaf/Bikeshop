@@ -27,23 +27,13 @@ router.post('/add-shop', function(req, res, next) {
   console.log(req.session.bikes === undefined);
   //req.session.bikes vide
   if (req.session.bikes === undefined) {
-    req.session.bikes = [{
-      url: req.body.url,
-      name: req.body.name,
-      price: req.body.price,
-      quantity: req.body.quantity
-    }];
+    req.session.bikes = [req.body];
     console.log(req.session.bikes);
     res.render('shop', { dataCardBike : req.session.bikes });
   }
   //req.session.bikes existe
   else {
-    req.session.bikes.push({
-      url: req.body.url,
-      name: req.body.name,
-      price: req.body.price,
-      quantity: req.body.quantity
-    })
+    req.session.bikes.push(req.body)
     console.log(req.session.bikes);
     res.render('shop', { dataCardBike : req.session.bikes });
   }
